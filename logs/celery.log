@@ -13,3 +13,11 @@
 [2024-03-07 14:37:07,563: INFO/MainProcess] Task Inserir Valor redis[eb209c32-fec7-4d38-9fbb-743ae2efc608] received
 [2024-03-07 14:37:07,580: WARNING/MainProcess] TASK STARTING: Inserir Valor redis[eb209c32-fec7-4d38-9fbb-743ae2efc608]
 [2024-03-07 14:37:11,673: INFO/MainProcess] Task Inserir Valor redis[eb209c32-fec7-4d38-9fbb-743ae2efc608] succeeded in 4.094000000040978s: True
+[2024-03-07 15:18:03,697: INFO/MainProcess] Connected to redis://localhost:6379/1
+[2024-03-07 15:18:05,755: INFO/MainProcess] mingle: searching for neighbors
+[2024-03-07 15:18:12,858: INFO/MainProcess] mingle: all alone
+[2024-03-07 15:18:14,893: INFO/MainProcess] pidbox: Connected to redis://localhost:6379/1.
+[2024-03-07 15:18:18,988: INFO/MainProcess] celery@U2505B05181 ready.
+[2024-03-07 15:22:02,549: INFO/MainProcess] Task Soma de dois números[7047c15b-7597-407b-9401-dba543fb9cdf] received
+[2024-03-07 15:22:02,549: WARNING/MainProcess] TASK STARTING: Soma de dois números[7047c15b-7597-407b-9401-dba543fb9cdf]
+[2024-03-07 15:22:04,591: INFO/MainProcess] Task Soma de dois números[7047c15b-7597-407b-9401-dba543fb9cdf] succeeded in 2.0469999999040738s: 5
