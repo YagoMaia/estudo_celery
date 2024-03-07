@@ -1,0 +1,15 @@
+[2024-03-07 14:07:43,544: INFO/MainProcess] Connected to redis://localhost:6379/1
+[2024-03-07 14:07:45,562: INFO/MainProcess] mingle: searching for neighbors
+[2024-03-07 14:07:52,667: INFO/MainProcess] mingle: all alone
+[2024-03-07 14:07:58,777: INFO/MainProcess] celery@U2505B05181 ready.
+[2024-03-07 14:08:00,811: INFO/MainProcess] pidbox: Connected to redis://localhost:6379/1.
+[2024-03-07 14:08:03,631: INFO/MainProcess] Events of group {task} enabled by remote.
+[2024-03-07 14:37:03,459: INFO/MainProcess] Task Soma de dois números[04b015e7-3b7b-4a6d-a3a9-7f759b2c0b76] received
+[2024-03-07 14:37:03,459: WARNING/MainProcess] TASK STARTING: Soma de dois números[04b015e7-3b7b-4a6d-a3a9-7f759b2c0b76]
+[2024-03-07 14:37:05,511: INFO/MainProcess] Task Soma de dois números[04b015e7-3b7b-4a6d-a3a9-7f759b2c0b76] succeeded in 2.047000000020489s: 70
+[2024-03-07 14:37:05,518: INFO/MainProcess] Task Hello World[d2de9edd-403b-41a8-9a2a-dcbd244f49b9] received
+[2024-03-07 14:37:05,518: WARNING/MainProcess] TASK STARTING: Hello World[d2de9edd-403b-41a8-9a2a-dcbd244f49b9]
+[2024-03-07 14:37:07,563: INFO/MainProcess] Task Hello World[d2de9edd-403b-41a8-9a2a-dcbd244f49b9] succeeded in 2.047000000020489s: 'Hello World'
+[2024-03-07 14:37:07,563: INFO/MainProcess] Task Inserir Valor redis[eb209c32-fec7-4d38-9fbb-743ae2efc608] received
+[2024-03-07 14:37:07,580: WARNING/MainProcess] TASK STARTING: Inserir Valor redis[eb209c32-fec7-4d38-9fbb-743ae2efc608]
+[2024-03-07 14:37:11,673: INFO/MainProcess] Task Inserir Valor redis[eb209c32-fec7-4d38-9fbb-743ae2efc608] succeeded in 4.094000000040978s: True
