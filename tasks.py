@@ -26,7 +26,11 @@ celery_app = Celery('tasks', broker=BROKER_URL, backend=BACKEND_URL, broker_conn
 # @celery_app.on_after_configure.connect
 # def setup_periodic_tasks(sender, **kwargs):
 #     # Calls test('hello') every 10 seconds.
-#     senderedis_connection.add_periodic_task(10.0, hello.s(), name='add every 10')
+#     sender.add_periodic_task(10.0, hello.s(), name='add every 10')
+
+@celery_app.task(name = "Error Worker")
+def error_handler(request, exc, traceback):
+    print('Task {0} raised exception: {1!r}\n{2!r}'.format(request.id, exc, traceback))
 
 @celery_app.task(name = "Soma de dois números", base = DebugTask)
 def add(x: int, y: int) -> int:

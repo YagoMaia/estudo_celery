@@ -19,15 +19,21 @@ def task_soma(num1 : int = Form(), num2 : int = Form()) -> AsyncResult.id:
     """
     Endpoint responsável por somar dois números, feito pelo celery
     """
-    soma = tasks.add.delay(num1, num2)
-    return soma.id
+    soma1 = tasks.add.delay(num1, num2)
+    soma2 = tasks.add.apply_async((num1, num2), link_error=tasks.error_handler.s())
+    soma3 = tasks.add.apply_async((num1, num2), retry = False, queue = 'priority.high') #Necessário colocar no argumento ao iniciar o celery
+    return soma1.id, soma2.id, soma3.id
 
 @app.post("/hello_world")
 def hello_world() -> AsyncResult.id:
     """
     Endpoint responsável por retornar Hello World, feito pelo celery
     """
-    hello = tasks.hello.delay()
+    #hello = tasks.hello.delay()
+    try:
+        hello = tasks.hello.apply_async(())
+    except hello.OperationalError as exec:
+        print(exec)
     return hello.id
 
 @app.post("/inserir_redis")
