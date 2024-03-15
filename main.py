@@ -79,7 +79,7 @@ def inserir_dados_redis(*, chave: str = Form(), valor: str | int = Form(), backg
         return "Erro ao executar função inserir dados em Background"
 
 @app.post("/group")
-def task_group_soma() -> list:
+def task_group_soma() -> str:
     """
     Endpoint responsável por realizar a soma de dois números com o método group do celery.
     """
@@ -92,10 +92,11 @@ def task_group_soma() -> list:
     job = group(tasks_list)
     
     result = job.apply_async()
-    ret_values = result.get(disable_sync_subtasks=False)
-    for r in ret_values:
-        data.append(r)
-    return data
+    return "Task executada"
+    #ret_values = result.get(disable_sync_subtasks=False)
+    #for r in ret_values:
+    #    data.append(r)
+    #return data
 
 @app.get("/task/{task_id}")
 def get_task(task_id : str) -> dict:
@@ -108,3 +109,12 @@ def get_task(task_id : str) -> dict:
         'Status': ret.status,
         'Result': ret.get()
     }
+    
+@app.post("/inserir_db")
+def inserir_usuario_banco_de_dados(*, id : str = Form(), name : str = Form(), background_task : BackgroundTasks):
+    try:
+        background_task.add_task(tasks.inserir_banco_dados.delay, id, name)
+        return "Inserindo novo usuário no banco de dados via BackGround"
+    except Exception as error:
+        print(error)
+        return "Erro ao inserir usuário no banco de dados via BackGround"

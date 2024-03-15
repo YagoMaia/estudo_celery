@@ -2,10 +2,14 @@ from celery import Celery, Task
 from celery.result import AsyncResult
 import redis
 import os
+import psycopg2
+import psycopg2.extras
 
 redis_connection = redis.Redis()
 
-os.environ.setdefault('FORKED_BY_MULTIPROCESSING', '1')
+db = psycopg2.connect(host="localhost", database="celery", user="postgres", password="postgres")
+
+#os.environ.setdefault('FORKED_BY_MULTIPROCESSING', '1')
 BROKER_URL = 'redis://localhost:6379/1'
 BACKEND_URL = 'redis://localhost:6379/1'
 
@@ -92,6 +96,24 @@ def get_task_by_id(task_id) -> AsyncResult:
     """
     ret = celery_app.AsyncResult(task_id)
     return ret
+
+@celery_app.task(name = "Inserir Banco de Dados", base = DebugTask)
+def inserir_banco_dados(id: str, name: str) -> str:
+    """
+    Função responsável por inserir dados de um usuário no banco de dados celery(teste)
+    
+    id : Id do usuário
+    name: Nome do Usuário
+    """
+    try:
+        query = "INSERT INTO teste values (%(id)s, %(name)s)"
+        cursor = db.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cursor.execute(query, {'id' : id, 'name': name})
+        db.commit()
+        return "Usuário inserido com sucesso no banco de dados"
+    except Exception as error:
+        print(error)
+        return "Error ao inserir usuário no banco de dados"
 
 #TODO Estudar -> Linking (callbacks/errbacks) 
 #TODO Estudar -> ETA and Countdown
